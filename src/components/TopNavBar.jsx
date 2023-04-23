@@ -81,7 +81,7 @@ function AppTopBar ({ navigate }) {
         <Row>
           {!isMobile &&
           MenuItems().map((menuItem) => {
-            if (!localStorage.getItem('token') && (menuItem.key === 3 || menuItem.key == 4)) {
+            if (!localStorage.getItem('token') && (menuItem.key === 3 || menuItem.key === 4)) {
               return null;
             }
             if (!isMaker && menuItem.onlyMaker === true) {
