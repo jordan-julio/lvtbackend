@@ -74,10 +74,7 @@ function JobsMoreInfo() {
                 const response = await axios.get(`${localhost}/jobs/${jobid}`);
                 setJobDetails(response.data);
                 const imagelist = [];
-                const imageFromResponse = JSON.parse(response.data.images);
-                for (let i = 0; i < imageFromResponse.length; i++) {
-                    imagelist.push(imageFromResponse[i]);
-                }
+                imagelist.push(response.data.images.replace(/["]+/g, ''));
                 imagelist.push(response.data.thumbnail.replace(/["]+/g, ''));
                 setImages(imagelist);
             } catch (error) {

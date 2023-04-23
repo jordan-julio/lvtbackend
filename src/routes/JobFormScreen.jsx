@@ -55,7 +55,7 @@ function JobFormScreen() {
     address: '',
     clothing_type: 'Dress',
     thumbnail: '',
-    images: [],
+    images: '',
     description: '',
     budget: 0,
     postcode: '',
@@ -107,7 +107,7 @@ function JobFormScreen() {
                 address: '',
                 clothing_type: [],
                 thumbnail: '',
-                images: [],
+                images: '',
                 description: '',
                 budget: 0,
                 postcode: '',
@@ -122,7 +122,27 @@ function JobFormScreen() {
         ]
       })
     })
-    .catch((err) => { console.log(err); });
+    .catch((err) => {
+      Modal.error({
+        title: 'Job Post Failed',
+        content: (
+          <div>
+            <p id='error'>Your job has not been posted successfully!</p>
+            <p id='error'>{err.response.data.message}</p>
+          </div>
+        ),
+        footer: [
+          <Row key="row" flex="auto" justify="space-between">
+            <PopButton key="submit" type="primary" onClick={() => {
+              Modal.destroyAll();
+            }
+            }>
+              Ok
+            </PopButton>
+          </Row>
+        ]
+      })
+    });
   };
   const navigate = useNavigate();
 
