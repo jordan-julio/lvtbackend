@@ -44,7 +44,7 @@ function AppTopBar ({ navigate }) {
       Modal.success({
         content: 'You have successfully logged out.',
       });
-      window.location.reload();
+      navigate('/login');
     }
   };
 
