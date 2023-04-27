@@ -17,7 +17,7 @@ function AppTopBar ({ navigate }) {
       setIsMaker(false);
     } else {
       axios
-        .get('http://morning-everglades-00990.herokuapp.com/usertype', {
+        .get('https://morning-everglades-00990.herokuapp.com/usertype', {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
