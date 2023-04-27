@@ -41,6 +41,7 @@ function AppTopBar ({ navigate }) {
     } else {
       localStorage.removeItem('user')
       localStorage.removeItem('token');
+      localStorage.removeItem('userId');
       Modal.success({
         content: 'You have successfully logged out.',
       });

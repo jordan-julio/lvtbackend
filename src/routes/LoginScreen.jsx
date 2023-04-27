@@ -25,6 +25,7 @@ function LoginScreen () {
             });
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('user', response.data.user);
+                localStorage.setItem('userId', response.data.userId);
             // Show success modal and navigate to home page on success
                 Modal.confirm({
                 title: 'Login successfully',

@@ -60,7 +60,7 @@ function JobFormScreen() {
     budget: 0,
     postcode: '',
     state: '',
-    user_id: -1,
+    user_id: localStorage.getItem('userId') === null ? -1 : localStorage.getItem('userId'),
   });
 
   const handleInputChange = (event) => {
@@ -74,18 +74,6 @@ function JobFormScreen() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (localStorage.getItem('token') !== null) {
-      await axios.get(`${localhost}/user/id`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        }
-      }).then(async (res) => {
-        setFormData({
-          ...formData,
-          user_id: res.data.user_id,
-        });
-    });
-  }
   await axios.post(`${localhost}/jobs`, formData)
         .then((res) => {
           Modal.success({
