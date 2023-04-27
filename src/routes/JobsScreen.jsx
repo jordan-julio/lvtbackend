@@ -7,7 +7,7 @@ import { FlipCard, FlipCardBack, FlipCardFront, FlipCardInner, Title } from "../
 import PopButton from "../components/AnimatedButton";
 import FormDiv from "../components/FormDiv";
 
-export const localhost = 'https://morning-everglades-00990.herokuapp.com';
+export const localhost = 'http://morning-everglades-00990.herokuapp.com';
 function JobsScreen () {
     const [jobs, setJobs] = React.useState([]);
     const [isDataFetching, setIsDataFetching] = React.useState(false);
