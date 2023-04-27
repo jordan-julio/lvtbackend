@@ -74,7 +74,7 @@ function JobFormScreen() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem('token') !== null) {
       await axios.get(`${localhost}/user/id`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
