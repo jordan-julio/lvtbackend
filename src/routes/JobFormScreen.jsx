@@ -110,7 +110,7 @@ function JobFormScreen() {
                   budget: 0,
                   postcode: '',
                   state: '',
-                  user_id: formData.user_id === -1 ? 0 : formData.user_id,
+                  user_id: formData.user_id,
                 })
                 Modal.destroyAll();
               }
@@ -144,6 +144,10 @@ function JobFormScreen() {
       });
     }).catch((err) => { console.log(err); });
   } else {
+    setFormData({
+      ...formData,
+      user_id: -1,
+    });
     await axios.post(`${localhost}/jobs`, formData)
     .then((res) => {
       Modal.success({
