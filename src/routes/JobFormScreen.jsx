@@ -105,13 +105,14 @@ function JobFormScreen() {
                 phone_number: '',
                 email: '',
                 address: '',
-                clothing_type: [],
+                clothing_type: 'Dress',
                 thumbnail: '',
                 images: '',
                 description: '',
                 budget: 0,
                 postcode: '',
                 state: '',
+                user_id: -1,
               })
               Modal.destroyAll();
             }
