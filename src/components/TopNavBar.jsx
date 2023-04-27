@@ -84,6 +84,7 @@ function AppTopBar ({ navigate }) {
             if (!localStorage.getItem('token') && (menuItem.key === 3 || menuItem.key === 4)) {
               return null;
             }
+            if (localStorage.getItem('token') && menuItem.key === 2) return null;
             if (!isMaker && menuItem.onlyMaker === true) {
               return null;
             } else if (isMaker && menuItem.onlyConsumer === true) {
