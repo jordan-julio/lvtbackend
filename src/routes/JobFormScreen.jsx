@@ -84,9 +84,66 @@ function JobFormScreen() {
           ...formData,
           user_id: res.data.user_id,
         });
-      }).catch((err) => { console.log(err); });
-    }
-
+        console.log(formData);
+        axios.post(`${localhost}/jobs`, formData)
+      .then((res) => {
+        Modal.success({
+          title: 'Job Posted Successfully',
+          content: (
+            <div>
+              <p id='success'>Your job has been posted successfully!</p>
+            </div>
+          ),
+          footer: [
+            <Row key="row" flex="auto" justify="space-between">
+              <PopButton key="submit" type="primary" onClick={() => {
+                setFormData({
+                  first_name: '',
+                  last_name: '',
+                  phone_number: '',
+                  email: '',
+                  address: '',
+                  clothing_type: 'Dress',
+                  thumbnail: '',
+                  images: '',
+                  description: '',
+                  budget: 0,
+                  postcode: '',
+                  state: '',
+                  user_id: formData.user_id === -1 ? 0 : formData.user_id,
+                })
+                Modal.destroyAll();
+              }
+              }>
+                Ok
+              </PopButton>
+            </Row>
+          ]
+        })
+      })
+      .catch((err) => {
+        Modal.error({
+          title: 'Job Post Failed',
+          content: (
+            <div>
+              <p id='error'>Your job has not been posted successfully!</p>
+              <p id='error'>{err.response.data.message}</p>
+            </div>
+          ),
+          footer: [
+            <Row key="row" flex="auto" justify="space-between">
+              <PopButton key="submit" type="primary" onClick={() => {
+                Modal.destroyAll();
+              }
+              }>
+                Ok
+              </PopButton>
+            </Row>
+          ]
+        })
+      });
+    }).catch((err) => { console.log(err); });
+  } else {
     await axios.post(`${localhost}/jobs`, formData)
     .then((res) => {
       Modal.success({
@@ -112,7 +169,7 @@ function JobFormScreen() {
                 budget: 0,
                 postcode: '',
                 state: '',
-                user_id: -1,
+                user_id: formData.user_id === -1 ? 0 : formData.user_id,
               })
               Modal.destroyAll();
             }
@@ -144,6 +201,8 @@ function JobFormScreen() {
         ]
       })
     });
+  }
+    
   };
   const navigate = useNavigate();
 
