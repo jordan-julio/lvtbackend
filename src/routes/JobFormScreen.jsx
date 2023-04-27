@@ -84,8 +84,9 @@ function JobFormScreen() {
           ...formData,
           user_id: res.data.user_id,
         });
-
-        await axios.post(`${localhost}/jobs`, formData)
+    });
+  }
+  await axios.post(`${localhost}/jobs`, formData)
         .then((res) => {
           Modal.success({
             title: 'Job Posted Successfully',
@@ -110,7 +111,7 @@ function JobFormScreen() {
                     budget: 0,
                     postcode: '',
                     state: '',
-                    user_id: formData.user_id,
+                    user_id: -1,
                   })
                   Modal.destroyAll();
                 }
@@ -142,68 +143,8 @@ function JobFormScreen() {
             ]
           })
         });
-      }).catch((err) => { console.log(err); });
-  } else {
-    await axios.post(`${localhost}/jobs`, formData)
-    .then((res) => {
-      Modal.success({
-        title: 'Job Posted Successfully',
-        content: (
-          <div>
-            <p id='success'>Your job has been posted successfully!</p>
-          </div>
-        ),
-        footer: [
-          <Row key="row" flex="auto" justify="space-between">
-            <PopButton key="submit" type="primary" onClick={() => {
-              setFormData({
-                first_name: '',
-                last_name: '',
-                phone_number: '',
-                email: '',
-                address: '',
-                clothing_type: 'Dress',
-                thumbnail: '',
-                images: '',
-                description: '',
-                budget: 0,
-                postcode: '',
-                state: '',
-                user_id: formData.user_id === -1 ? 0 : formData.user_id,
-              })
-              Modal.destroyAll();
-            }
-            }>
-              Ok
-            </PopButton>
-          </Row>
-        ]
-      })
-    })
-      .catch((err) => {
-        Modal.error({
-          title: 'Job Post Failed',
-          content: (
-            <div>
-              <p id='error'>Your job has not been posted successfully!</p>
-              <p id='error'>{err.response.data.message}</p>
-            </div>
-          ),
-          footer: [
-            <Row key="row" flex="auto" justify="space-between">
-              <PopButton key="submit" type="primary" onClick={() => {
-                Modal.destroyAll();
-              }
-              }>
-                Ok
-              </PopButton>
-            </Row>
-          ]
-        })
-      });
-    }
-    
   };
+
   const navigate = useNavigate();
 
   const handleCancel = () => setPreviewOpen(false);
